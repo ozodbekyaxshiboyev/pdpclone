@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Detail{% endblock title %}
+
+{% block content %}
+    <br/>
+    <div class="jumbotron">
+
+
+    <h1>KURS: {{ course.name }}</h1>
+    <h2>DARS: {{ lesson.name }}</h2>
+
+
+    <p>
+        <h3> MASHQ: {{ task.number }} </h3>
+    </p>
+
+        <form method="post" enctype="multipart/form-data" >{% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="O`zgartirish">
+        </form>
+
+{#    <p class="lead">#}
+{#            <a class="btn btn-primary btn-lg" href="" role="button">Mashqni o`zgartirish</a>#}
+{#        </p>#}
+{#    <p class="lead">#}
+{#            <a class="btn btn-primary btn-lg" href="{% url 'taskdelete' pk=course.pk lesson_pk=lesson.pk task_pk=task.pk %}" role="button">Mashqni o`chirish</a>#}
+{#        </p>#}
+
+    </div>
+
+
+{% endblock content %}

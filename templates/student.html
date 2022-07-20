@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Student{% endblock title %}
+
+{% block content %}
+    <br/>
+    <div class="jumbotron">
+
+
+
+
+    <h3>MENING RO`YHATDAN O`TGAN KURSLARIM:</h3>
+
+    <h4>
+    {% for course in courses %}
+    <li>
+    <a href="{% url 'studentlessons' course.pk %}">{{ course.name }}</a>
+    </li>
+    {% endfor %}
+    </h4>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <p class="lead">
+            <a class="btn btn-primary btn-lg" href="{% url 'home' %}" role="button">Yangi kurs qo`shish</a>
+        </p>
+
+    </div>
+
+
+{% endblock content %}

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Bosh sahifa{% endblock title %}
+
+{% block content %}
+    <br/>
+    <div class="jumbotron">
+        <h5 class="display-4">ALGORITM - barkamollik sari qadam</h5>
+        <hr class="my-4">
+        <p>DASTURLASHNI QULAY MUHITDA O`RGANING</p>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="{% url 'signup' %}" role="button">Ro`yhatdan o`ting</a>
+        </p>
+    </div>
+
+    <h3>KURSLARIMIZ:</h3>
+
+    <h2>
+    {% for course in courses %}
+    <li>
+    <a href="{% url 'course_about' course.pk %}">{{ course.name }}</a>
+    </li>
+    {% endfor %}
+    </h2>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h3>MENTORLARIMIZ JAMOASI:</h3>
+    <br>
+    <img src="media/img_1.png" class="rounded float-start" alt="..." width="240" height="280">
+    <img src="media/img_2.png" class="rounded float-end" alt="..." width="230" height="280">
+    <img src="media/img.png" class="rounded float-end" alt="..." width="250" height="280">
+    <img src="media/img_3.png" class="rounded float-end" alt="..." width="280" height="280">
+    <br>
+    <br>
+    <h3>Biz bilan  <a href="{% url 'about' %}">aloqa</a>:</h3>
+{% endblock content %}

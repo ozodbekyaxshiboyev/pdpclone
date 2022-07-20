@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Bosh sahifa{% endblock title %}
+
+{% block content %}
+    <br/>
+    <div class="jumbotron">
+
+
+
+
+    <h3>KURSLAR:</h3>
+
+    <h2>
+    {% for course in courses %}
+    <li>
+    <a href="{% url 'lessons' course.pk %}">{{ course.name }}</a>
+    </li>
+    {% endfor %}
+    </h2>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <p class="lead">
+            <a class="btn btn-primary btn-lg" href="{% url 'coursecreate' %}" role="button">Yangi kurs qo`shish</a>
+        </p>
+
+    </div>
+    <br>
+
+
+
+{% endblock content %}

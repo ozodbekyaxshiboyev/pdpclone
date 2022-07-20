@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Tasks{% endblock title %}
+
+{% block content %}
+    <br/>
+    <div class="jumbotron">
+    <p class="lead">
+            <a class="btn btn-success btn-lg" href="{% url 'lessons' pk=course.pk  %}" role="button">Orqaga</a>
+        </p>
+
+    <h1>KURS: {{ course.name }}</h1>
+    <h2>DARS: {{ lesson.name }}</h2>
+        {% if lesson.video_file %}
+        <label><h3>Videoqo`llanma</h3></label>
+        <video width="800" height="600" controls>
+            <source src="{{ lesson.video_file.url }}" type="video/mp4">
+        </video>
+
+        {% endif %}
+        <br>
+        <br>
+        {% if lesson.source_file %}
+            <a href="{{ lesson.source_file.url }}" download><h3>Yuklab olish <br>uchun qo`llanma</h3>  </a>
+{#            <embed src="{{ lesson.source_file.url }}" width="80px" height="100px" />#}
+
+{#            <embed src="{{ lesson.source_file.url }}" width="40px" height="30" />#}
+{#            <iframe src="{{ lesson.source_file.url }}" style="width: 100%;height: 100%;border: none;"></iframe>#}
+        {% endif %}
+
+{#    <img class="image" src="{{ task.image.url }}"  alt="Girl in a jacket" width="1000" height="700">#}
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <h3>******* "{{ lesson.name }}" darsga tegishli bo`lgan mashqlar  *******</h3>
+    <br>
+    <h2>
+    {% for task in tasks %}
+    <li>
+{#    <a href="{% url 'course_about' lesson.pk %}">{{ lesson.name }}</a>#}
+    <a href="{% url 'taskdetail' pk=course.pk lesson_pk=lesson.pk task_pk=task.pk %}">{{ task.number }} - mashq</a>
+    </li>
+    {% endfor %}
+    </h2>
+    <br>
+    <br>
+    <br>
+
+    {% if user.is_superuser %}
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="{% url 'taskcreate' pk=course.pk lesson_pk=lesson.pk %}" role="button">Yangi mashq qo`shish</a>
+        </p>
+        <p class="lead">
+            <a class="btn btn-danger btn-lg" href="{% url 'lessondelete' pk=course.pk lesson_pk=lesson.pk %}" role="button">Darsni o`chirish</a>
+        </p>
+    {% endif %}
+
+
+    </div>
+
+
+{% endblock content %}

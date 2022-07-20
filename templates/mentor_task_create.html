@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Task_create{% endblock title %}
+
+{% block content %}
+    <br/>
+    <div class="jumbotron">
+
+    <form method="post" enctype="multipart/form-data">{% csrf_token %}
+    {{ form.as_p }}
+        <br>
+        <br>
+    <input type="submit" value="Qo`shish">
+    </form>
+
+
+    </div>
+
+
+{% endblock content %}

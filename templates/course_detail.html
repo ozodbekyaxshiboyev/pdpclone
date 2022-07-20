@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ course.name }}{% endblock title %}
+
+{% block content %}
+    <h1>{{ course.name }} kursi:</h1>
+    <br>
+    <br>
+    <text>{{ course.description }}</text>
+    <br>
+    <br>
+    <p>Kurs davomiyligi {{ course.duration }} oy</p>
+    <br/>
+    <h2>Mavzular ro`yhati:</h2>
+    <div class="jumbotron">
+{#            <p>{{  }}</p>#}
+            <h2>
+            {% for lesson in lessons %}
+            <li>
+            {{ lesson.name }}
+            </li>
+            {% endfor %}
+            </h2>
+        <p class="lead">
+
+        </p>
+    </div>
+            {% if user.is_authenticated %}
+                <a class="btn btn-primary btn-lg" href="{% url 'register' course.pk %}" role="button">Kursni sotib olish</a>
+            {% else %}
+                <a class="btn btn-primary btn-lg" href="{% url 'login' %}" role="button">Kursni sotib olish</a>
+            {% endif %}
+
+
+
+
+
+{% endblock content %}

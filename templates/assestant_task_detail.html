@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Detail{% endblock title %}
+
+{% block content %}
+    <br/>
+    <div class="jumbotron">
+    <p class="lead">
+            <a class="btn btn-success btn-lg" href="{% url 'studenttasks' pk=course.pk lesson_pk=lesson.pk  %}" role="button">Orqaga</a>
+        </p>
+
+    <h1>KURS: {{ course.name }}</h1>
+    <h2>DARS: {{ lesson.name }}</h2>
+
+
+    <p>
+        <h3> MASHQ: {{ task.number }} <br> >>>{{ task.description }}</h3>
+    </p>
+    <br>
+    <br>
+
+        {% if task.image %}
+            <img class="image" src="{{ task.image.url }}"  alt="Girl in a jacket" width="1000" height="700">
+
+        {% endif %}
+    <br>
+    <br>
+    <br>
+    </div>
+    <br>
+
+    <div class="jumbotron">
+        {% for text in texttasks %}
+{#            <li>#}
+            {% if text.source_file %}
+                    <br>
+                {% if text.is_user %}
+                    <a href="{{ text.source_file.url }}" download><h5>[Student]: Bu File</h5>  </a>   <p style="color:green">{{ text.send_time }}</p>
+                    {% else %}
+                    <a href="{{ text.source_file.url }}" download><h3 style="color:red">[Assistant]: >> Bu File</h3>  </a>  <p style="color:green">{{ text.send_time }}</p>
+                {% endif %}
+            {% endif %}
+
+            {% if text.source_text %}
+                <br>
+                {% if text.is_user %}
+                        <h5>[Student]: {{ text.source_text }}</h5>   <p style="color:green">({{ text.send_time }})</p>
+                    {% else %}
+                        <h3 style="color:red">[Assistant]: >> {{ text.source_text }}</h3>  <p style="color:green">{{ text.send_time }}</p>
+                {% endif %}
+
+            {% endif %}
+
+{#            </li>#}
+        {% endfor %}
+
+        <br>
+
+        <form method="post" enctype="multipart/form-data">{% csrf_token %}
+            {{ form.as_p }}
+            <br>
+            <br>
+            <input type="submit" value="Yuborish">
+        </form>
+
+    </div>
+
+
+
+    {% if user.is_superuser %}
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="{% url 'taskupdate' pk=course.pk lesson_pk=lesson.pk task_pk=task.pk %}" role="button">Mashqni o`zgartirish</a>
+        </p>
+    <p class="lead">
+            <a class="btn btn-danger btn-lg" href="{% url 'taskdelete' pk=course.pk lesson_pk=lesson.pk task_pk=task.pk %}" role="button">Mashqni o`chirish</a>
+        </p>
+    {% endif %}
+
+
+{#    </div>#}
+
+
+{% endblock content %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Confirming{% endblock title %}
+
+{% block content %}
+    <br/>
+    <div class="jumbotron">
+
+    <form method="post">{% csrf_token %}
+    <p>Haqiqatdan ham siz  "{{ object.name }} kursini o`chirib tashlamoqchimisiz"?</p>
+    {{ form }}
+    <input type="submit" value="O`chirish">
+    </form>
+
+
+
+{% endblock content %}

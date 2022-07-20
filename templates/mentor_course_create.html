@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Course_create{% endblock title %}
+
+{% block content %}
+    <br/>
+    <div class="jumbotron">
+
+    <form method="post">{% csrf_token %}
+    {{ form.as_p }}
+        <br>
+        <br>
+    <input type="submit" value="Qo`shish">
+    </form>
+
+{#    <p class="lead">#}
+{#            <a class="btn btn-primary btn-lg" href="{% url 'coursecreate' %}" role="button">Yangi kurs qo`shish</a>#}
+{#        </p>#}
+
+    </div>
+
+
+{% endblock content %}

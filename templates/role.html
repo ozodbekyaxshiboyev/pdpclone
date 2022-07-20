@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Bosh sahifa{% endblock title %}
+
+{% block content %}
+    <br/>
+    <div class="jumbotron">
+        <h5 class="display-4">Rollni tanlang</h5>
+        <hr class="my-4">
+        <p>Sizda shu yerda ko’rsatilgan barcha rollarga kirish huquqi mavjud.
+Biror rolni tanlab jarayonni davom ettirishingiz mumkin</p>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="{% url 'student' %}" role="button">STUDENT</a>
+        </p>
+
+
+        {% if course_assestant %}
+               <p class="lead">
+                <a class="btn btn-primary btn-lg" href="{% url 'assistant' %}" role="button">ASSESTANT</a>
+        </p>
+        {% endif %}
+
+
+
+        {% if user.is_superuser %}
+            <p class="lead">
+            <a class="btn btn-primary btn-lg" href="{% url 'mentor' %}" role="button">MENTOR</a>
+        </p>
+        {% endif %}
+
+    </div>
+
+{% endblock content %}

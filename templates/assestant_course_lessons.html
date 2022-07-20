@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ course.name }}{% endblock title %}
+
+{% block content %}
+    <br/>
+    <div class="jumbotron">
+    <p class="lead">
+            <a class="btn btn-success btn-lg" href="{% url 'assistant' %}" role="button">Orqaga</a>
+        </p>
+
+    <h1>{{ course.name }}</h1>
+    <br>
+    <br>
+    <h3>Mavzular:</h3>
+
+    <h2>
+    {% for lesson in lessons %}
+    <li>
+{#    <a href="{% url 'assistantstudenttask' pk=course.pk lesson_pk=lesson.pk %}">{{ lesson.name }}</a>#}
+    <a href="{% url 'assistantstudenttask' pk=course.pk student_pk=student.pk lesson_pk=lesson.pk %}">{{ lesson.name }}</a>
+    </li>
+    {% endfor %}
+    </h2>
+    <br>
+    <br>
+    <br>
+
+    {% if user.is_superuser %}
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="{% url 'lessoncreate' course.pk %}" role="button">Yangi dars qo`shish</a>
+        </p>
+        <p class="lead">
+            <a class="btn btn-danger btn-lg" href="{% url 'coursedelete' course.pk %}" role="button">Kursni o`chirish</a>
+        </p>
+
+    {% endif %}
+
+
+
+    </div>
+
+
+{% endblock content %}

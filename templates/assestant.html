@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Assistant{% endblock title %}
+
+{% block content %}
+    <br/>
+    <div class="jumbotron">
+
+
+
+
+    <h3>ASSISTENTLIK KURSLARIM:</h3>
+
+    <h4>
+    {% for course in course_assestant %}
+    <li>
+    <a href="{% url 'assistantstudent' course.pk %}">{{ course.name }}</a>
+    </li>
+    {% endfor %}
+    </h4>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <p class="lead">
+            <a class="btn btn-danger btn-lg" href="{% url 'logout' %}" role="button">Chiqish</a>
+        </p>
+
+    </div>
+
+
+{% endblock content %}

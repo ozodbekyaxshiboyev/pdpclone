@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ course.name }}{% endblock title %}
+
+{% block content %}
+    <br/>
+    <div class="jumbotron">
+    <p class="lead">
+            <a class="btn btn-success btn-lg" href="{% url 'mentor' %}" role="button">Orqaga</a>
+        </p>
+
+    <h1>{{ course.name }}</h1>
+    <br>
+    <br>
+    <h3>Mavzular:</h3>
+
+    <h2>
+    {% for lesson in lessons %}
+    <li>
+{#    <a href="{% url 'course_about' lesson.pk %}">{{ lesson.name }}</a>#}
+    <a href="{% url 'tasks' pk=course.pk lesson_pk=lesson.pk %}">{{ lesson.name }}</a>
+    </li>
+    {% endfor %}
+    </h2>
+    <br>
+    <br>
+    <br>
+    
+    {% if user.is_superuser %}
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="{% url 'lessoncreate' course.pk %}" role="button">Yangi dars qo`shish</a>
+        </p>
+        <p class="lead">
+            <a class="btn btn-danger btn-lg" href="{% url 'coursedelete' course.pk %}" role="button">Kursni o`chirish</a>
+        </p>
+
+    {% endif %} 
+    
+
+
+    </div>
+    <br>
+    <br>
+
+    <div class="jumbotron">
+            <h2>KURS ASSISTENTLARI:</h2><p>(Ustiga bosish orqali bu kurs assistentligidan o`chirish mumkin)</p>
+            <br>
+            {% for assestant in assestants %}
+                <a href="noset/{{ assestant.pk }}"><h4> {{ assestant.user.first_name }}  {{ assestant.user.last_name }} </h4></a>
+            {% endfor %}
+
+            <br>
+            <br>
+
+        <h3>Kursga assistent qo`shish</h3>
+
+            <form action="set/" method="get">
+              <label for="lang">Foydalanuvchi: </label>
+              <select name="u_pk" id="lang">
+                  {% for customuser in customusers %}
+                <option value="{{ customuser.pk }}">{{ customuser.user.first_name }}  {{ customuser.user.last_name }}</option>
+                {% endfor %}
+              </select>
+              <input type="submit" value="Kurs assistentligiga qo`shish" />
+            </form>
+
+    </div>
+
+
+{% endblock content %}
