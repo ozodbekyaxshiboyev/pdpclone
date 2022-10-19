@@ -1,4 +1,4 @@
-asgiref==3.5.2
+asgiref==3.5.3
 backports.zoneinfo==0.2.1
 certifi==2022.5.18.1
 charset-normalizer==2.0.12
